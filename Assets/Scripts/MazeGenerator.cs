@@ -7,7 +7,7 @@ public class MazeGenerator : MonoBehaviour
     public int size_x, size_y;
 
     public GameObject floor_prefab, wall_prefab;
-    public float grid_size, wall_thickness;
+    public float grid_size, wall_thickness, wall_height;
 
     void Start()
     {
@@ -41,28 +41,28 @@ public class MazeGenerator : MonoBehaviour
                 {
                     GameObject wall = Instantiate(wall_prefab, new Vector3(x, 1, y + grid_size / 2.0f), Quaternion.identity);
                     wall.name = "North Wall[" + x + "][" + y + "]";
-                    wall.transform.localScale = new Vector3(wall_thickness, 1, grid_size);
+                    wall.transform.localScale = new Vector3(wall_thickness, wall_height, grid_size + wall_thickness);
                 }
 
                 if ((walls & (int)BFSGenerator.EWall.east) == (int)BFSGenerator.EWall.east)
                 {
                     GameObject wall = Instantiate(wall_prefab, new Vector3(x + grid_size / 2.0f, 1, y + grid_size), Quaternion.identity);
                     wall.name = "East Wall[" + x + "][" + y + "]";
-                    wall.transform.localScale = new Vector3(grid_size, 1, wall_thickness);
+                    wall.transform.localScale = new Vector3(grid_size + wall_thickness, wall_height, wall_thickness);
                 }
 
                 if ((walls & (int)BFSGenerator.EWall.south) == (int)BFSGenerator.EWall.south)
                 {
                     GameObject wall = Instantiate(wall_prefab, new Vector3(x + grid_size, 1, y + grid_size / 2.0f), Quaternion.identity);
                     wall.name = "South Wall[" + x + "][" + y + "]";
-                    wall.transform.localScale = new Vector3(wall_thickness, 1, grid_size);
+                    wall.transform.localScale = new Vector3(wall_thickness, wall_height, grid_size + wall_thickness);
                 }
 
                 if ((walls & (int)BFSGenerator.EWall.west) == (int)BFSGenerator.EWall.west)
                 {
                     GameObject wall = Instantiate(wall_prefab, new Vector3(x + grid_size / 2.0f, 1, y), Quaternion.identity);
                     wall.name = "West Wall[" + x + "][" + y + "]";
-                    wall.transform.localScale = new Vector3(grid_size, 1, wall_thickness);
+                    wall.transform.localScale = new Vector3(grid_size + wall_thickness, wall_height, wall_thickness);
                 }
 
             }
