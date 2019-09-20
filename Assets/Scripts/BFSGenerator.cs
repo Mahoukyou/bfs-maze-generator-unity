@@ -115,6 +115,17 @@ public class BFSGenerator
         }
     }
 
+    public void RemoveDoubleWalls()
+    {
+        for(int x = 0; x < size_x - 1; ++x)
+        {
+            for(int y = 0; y < size_y - 1; ++y)
+            {
+                walls[XYToIndex(x, y)] &= ~((int)EWall.east | (int)EWall.south);
+            }
+        }
+    }
+
     int? GetNeighbourIndex(int x, int y)
     {
         if (x < 0 || x >= size_x || y < 0 || y >= size_y)

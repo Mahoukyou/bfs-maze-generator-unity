@@ -13,6 +13,7 @@ public class MazeGenerator : MonoBehaviour
     {
         BFSGenerator gen = new BFSGenerator(size_x, size_y);
         gen.GenerateMaze();
+        gen.RemoveDoubleWalls();
 
         SpawnMaze(gen);
     }
